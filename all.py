@@ -2,12 +2,22 @@ import streamlit as st
 import smtplib
 from email.message import EmailMessage
 
-# App Title
+# App Title & Layout
 st.set_page_config(page_title="SafeRoute System", layout="wide")
 
 # Sidebar Navigation (Dropdown on Right)
 st.sidebar.title("🍃CareVault SOS Hub")
 page = st.sidebar.selectbox("Select an option", ["📄 Add Travel Details", "📍 Track Location", "🚨 Emergency SOS System"])
+
+# Language Change Option in Sidebar
+st.sidebar.markdown("### Change Language")
+if st.sidebar.button("हिंदी"):
+    st.markdown(
+        """
+        <meta http-equiv="refresh" content="0; url=https://all-hindi-sos-djtowaesuuca9upbcpxvxh.streamlit.app/">
+        """,
+        unsafe_allow_html=True
+    )
 
 # ------------------------ Add Travel Details Page ------------------------
 if page == "📄 Add Travel Details":
@@ -89,7 +99,7 @@ elif page == "📍 Track Location":
     user_email = st.text_input("📧 Your Email", placeholder="Enter your email")
     user_password = st.text_input("🔑 Your Email Password", type="password", placeholder="Enter your password")
 
-    # Button to track location (Redirects to Google)
+    # Button to track location (Redirects to tracking page)
     if st.button("🚀 Track Location of Loved One"):
         st.markdown("[🔗 Click here to Track Location](https://1543siddhant.github.io/Map-Live-Tracking/)", unsafe_allow_html=True)
 
@@ -108,13 +118,13 @@ elif page == "🚨 Emergency SOS System":
     DEFAULT_SUBJECT = "🚨 URGENT: Emergency Assistance Needed!"
     DEFAULT_MESSAGE = "I am in an emergency and require urgent help! Please assist immediately."
 
-    # Receiver emails input (allows editing)
+    # Receiver emails input (Editable)
     receiver_emails = st.text_area("📥 Receiver Emails (comma-separated)", ", ".join(DEFAULT_RECEIVERS))
 
-    # Subject (not editable, since it's fixed)
+    # Subject (Not editable)
     st.text_input("📌 Subject", DEFAULT_SUBJECT, disabled=True)
 
-    # Message (editable)
+    # Message (Editable)
     message = st.text_area("📝 Message", DEFAULT_MESSAGE)
 
     # File uploader for image attachment
@@ -131,7 +141,7 @@ elif page == "🚨 Emergency SOS System":
     # Send email button
     if st.button("🚀 Send Emergency Email"):
         if receiver_emails and message:
-            email_list = [email.strip() for email in receiver_emails.split(",")]  # Convert input to list
+            email_list = [email.strip() for email in receiver_emails.split(",")]
             
             # Create the email
             msg = EmailMessage()
