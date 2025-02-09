@@ -9,13 +9,11 @@ st.set_page_config(page_title="SafeRoute System", layout="wide")
 st.sidebar.title("🍃CareVault SOS Hub")
 page = st.sidebar.selectbox("Select an option", ["📄 Add Travel Details", "📍 Track Location", "🚨 Emergency SOS System"])
 
-# Language Change Option in Sidebar
+# Language Change Option in Sidebar (Simple Meta Refresh)
 st.sidebar.markdown("### Change Language")
 if st.sidebar.button("हिंदी"):
     st.markdown(
-        """
-        <meta http-equiv="refresh" content="0; url=https://all-hindi-sos-djtowaesuuca9upbcpxvxh.streamlit.app/">
-        """,
+        "<meta http-equiv='refresh' content='0; url=https://all-hindi-sos-djtowaesuuca9upbcpxvxh.streamlit.app/' />", 
         unsafe_allow_html=True
     )
 
