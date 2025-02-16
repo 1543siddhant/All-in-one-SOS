@@ -17,7 +17,7 @@ if st.sidebar.button("हिंदी"):
         unsafe_allow_html=True
     )
 
-# ------------------------ Add Travel Details Page ------------------------
+# ------------------------ Add Travel Details Page -----------------------
 if page == "📄 Add Travel Details":
     st.title("🚖 SafeRoute Emergency Reporting System")
 
